@@ -4,6 +4,7 @@ from rest_framework import viewsets
 from selenium import webdriver
 import os
 import time
+import requests
 
 
 def welcome(request):
@@ -14,14 +15,22 @@ def read_source(request):
     count = 0
     r_type = request.POST.get('r_type')
     source = request.POST.get('source')
+    
+
+    # file = request.POST.get('file')
+    
+    # file = request.POST.get(('_files')[0]'file'))
+
+    #re = requests.get(request)
+    # print(file)
 
     if source == '1':
         multiple = request.POST.get('list')
         multiple = multiple.split(';')
     elif source == '2':
-        with open('text.txt', 'r') as f:
-            multiple = f.read().split(';')
-            print(multiple)
+        multiple = request.FILES['file'].read().decode('utf-8')
+        print(multiple)
+        multiple = multiple.split(';')
     if r_type:
         r_type = 1
     else:
@@ -31,6 +40,7 @@ def read_source(request):
 
     for url in multiple:
         count += 1
+        print(url)
         take_screenshot(url, r_type, saving, count)
 
     res = show_results(saving)
