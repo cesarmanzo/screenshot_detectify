@@ -1,6 +1,8 @@
 # Detectify Coding Challenge - Screenshot as a Service
 
-A project to capture screenshots of webpages. Demo: [cesarmanzo.com](http://cesarmanzo.com)
+A project to capture screenshots of webpages. Demo: [cesarmanzo.com:8000](http://cesarmanzo.com:8000)
+
+Select File or List to input your webpages. If you want your screenshots to be Full Page, click the checkbox. To view all the past screenshots, click on "View Past Screenshots"
 
 ## To run the project
 
@@ -22,7 +24,7 @@ A project to capture screenshots of webpages. Demo: [cesarmanzo.com](http://cesa
 
 `python manage.py runserver`
 
-I tried to make Docker work, but failed because of the Chromedriver, so I uploaded the project to [cesarmanzo.com](http://cesarmanzo.com) so you can play with it.
+I tried to make Docker work, but failed because of the Chromedriver, so I uploaded the project to [cesarmanzo.com:8000](http://cesarmanzo.com:8000) so you can play with it.
 
 
 ## TODO
@@ -46,6 +48,8 @@ I tried to make Docker work, but failed because of the Chromedriver, so I upload
 - Make it an API
 
 - Add users and authentication
+
+- Error management
 
 
 
