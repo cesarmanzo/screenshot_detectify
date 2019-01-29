@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block 'results' %}
+
+<div class="container">
+
+  <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">Here are your screenshots!</h1>
+
+  <hr class="mt-2 mb-5">
+  <button onclick="location.href='/';" class="font-weight-light text-center text-lg-right">Home</button>
+
+  <div class="row text-center text-lg-left">
+  	{% for result in res %}
+
+    <div class="col-lg-3 col-md-4 col-6">
+      <a href="{{result.image}}" target="_blank" class="d-block mb-4 h-100">
+            <img class="img-fluid img-thumbnail" src="{{result.image}}" alt="">
+            <label class="image_label">{{result.title}}</label>
+          </a>
+    </div>
+
+    {% endfor %}
+
+  </div>
+
+</div>
+
+{% endblock %}

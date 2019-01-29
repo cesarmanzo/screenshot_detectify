@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block 'main' %}
+
+<div class="container">
+    <div class="col-md-12">
+        <div class="col-md-4">
+            <h1 class="font-weight-light text-center text-lg-left mt-4">Screenshot Home</h1>
+        </div>
+        <div class="col-md-6">
+            <button action="past_requesting" onclick="location.href='/past_requesting';" class="font-weight-light text-center text-lg-right">View Past Screenshots</button>
+        </div>
+        <hr class="mt-2 mb-8">
+    </div> 
+
+  <div class="row text-center text-lg-left">
+        <form action="read_source" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="radio" id="list" name="source" value="1" checked> List
+            <input type="radio" id="file" name="source" value="2"> File<br>
+
+            <label class="list" for="file_photo">Enter your list (Separated by ";")</label><br>
+            <textarea class="list" name="list" rows="10" cols="30">https://detectify.com</textarea><br class="list">
+
+            <label class="file" for="file_photo">File:</label>
+            <input class="file" type="file" name="file" id="file"><br>
+
+            <label for="fullpage">
+                <input id="r_type" type="checkbox" name="r_type" value="true"> Full Page?
+            </label><br>
+            
+            <input type="submit" value="Get my screenshots!">
+             
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+    $( document ).ready(function(){$('.file').hide();});
+
+    $('#list').click(function(){
+        $('.file').hide();
+        $('.list').show(); 
+    });
+
+    $('#file').click(function(){
+        $('.list').hide();
+        $('.file').show(); 
+    });
+</script>
+
+{% endblock %}
