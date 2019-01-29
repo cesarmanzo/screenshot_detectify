@@ -1,7 +1,24 @@
 # Detectify Coding Challenge - Screenshot as a Service
 
+A project to capture screenshots of webpages. Demo: [cesarmanzo.com](http://cesarmanzo.com)
 
-## TODO:
+## To run the project
+
+### Requirements
+
+- Python3
+- Django
+- Postgresql
+- [Chromedriver](http://chromedriver.chromium.org/downloads)
+
+`python manage.py makemigrations`
+`python manage.py migrate`
+`python manage.py runserver`
+
+I tried to make Docker work, but failed because of the Chromedriver, so I uploaded the project to cesarmanzo.com so you can play with it.
+
+
+## TODO
 
 - Deeply analyze the core function of the application. Maybe Webdriver is not the fastest nor the best, so I would analyze and consider if we can develop our own service exclusively for taking screenshots. This way we can make it faster, lighter, and use much less resources, which translates into lower costs and more profit or lower price for the customers.
 
