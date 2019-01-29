@@ -12,7 +12,9 @@ A project to capture screenshots of webpages. Demo: [cesarmanzo.com](http://cesa
 - [Chromedriver](http://chromedriver.chromium.org/downloads)
 
 `python manage.py makemigrations`
+
 `python manage.py migrate`
+
 `python manage.py runserver`
 
 I tried to make Docker work, but failed because of the Chromedriver, so I uploaded the project to cesarmanzo.com so you can play with it.
