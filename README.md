@@ -14,7 +14,7 @@ Select File or List to input your webpages. If you want your screenshots to be F
 - [Chromedriver](http://chromedriver.chromium.org/downloads)
 
 
-`echo PATH=.:$PATH`
+`PATH=.:$PATH`
 
 `pip install -r requirements.txt`
 
