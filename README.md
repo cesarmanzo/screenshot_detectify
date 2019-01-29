@@ -11,6 +11,9 @@ A project to capture screenshots of webpages. Demo: [cesarmanzo.com](http://cesa
 - Postgresql
 - [Chromedriver](http://chromedriver.chromium.org/downloads)
 
+
+`echo PATH=.:$PATH`
+
 `pip install -r requirements.txt`
 
 `python manage.py makemigrations`
@@ -42,6 +45,8 @@ I tried to make Docker work, but failed because of the Chromedriver, so I upload
 
 - Make it an API
 
+- Add users and authentication
+
 
 
 ## To serve 1,000,000 daily requests
@@ -50,7 +55,9 @@ That means almost 12 requests per second on average. First we would need to comp
 
 We would need to go asynchronous with something like asyncio/aiohttp. This is the best way to achieve the number of requests that we need. We would need to modify the already optimized code to make it async friendly.
 
-In the current configuration, it's running on a dockerized Linux server from Linode also using Nginx. We could continue to use it this way, but is not the optimal way. In my simple test using headless Chromium I needed around 200MB to run the process and take a Fullpage screenshot. Considering that it took around ~4 seconds each time and doing simple math, that means something like each second at 12 requests is 2.4Gb. But since the process keeps open Chrome for ~4 seconds, that means 9.6 Gb approximately. A 16Gb server would do the job fine. BUT what about the CPU? We would need to analyze if we can let customers wait in a queue or adding more resources. The best thing would be to port it to use Google Cloud or Amazon Elastic to self-manage the app and adjust the resources as needed so we don't need to have a dedicated team working on this and also so we know that it'll handle sudden peaks, maybe using Kubernetes to also deploy in real time all the updates. What if suddenly 2,000,000 requests come in one day? With these cloud services we would not have a problem.
+In the current configuration, it's running on a Linux server from Linode also using Nginx and Gunicorn. We could continue to use it this way, but is not the optimal way. In my simple test using headless Chromium I needed around 200MB to run the process and take a Fullpage screenshot. Considering that it took around ~4 seconds each time and doing simple math, that means something like each second at 12 requests is 2.4Gb. But since the process keeps open Chrome for ~4 seconds, that means 9.6 Gb approximately. A 16Gb server would do the job fine. BUT what about the CPU? We would need to analyze if we can let customers wait in a queue or adding more resources. 
+
+The best thing would be to port it to use Google Cloud or Amazon Elastic to self-manage the app and adjust the resources as needed so we don't need to have a dedicated team working on this and also so we know that it'll handle sudden peaks, maybe using Kubernetes to also deploy in real time all the updates. What if suddenly 2,000,000 requests come in one day? With these cloud services we would not have a problem.
 
 The database can handle itself just fine, we would just need to tweak a few configurations and decide where are we going to put it. Currently, it's along the application, but we must move it to something like Amazon RDS or it's own server. If somehow we decide that is better a NoSQL database, Django is NoSQL friendly so we would have no problems setting it up.
 
@@ -63,5 +70,3 @@ Testing. As the application grows, we would need to work using TDD. Testing firs
 Sandbox environment. Based on testing, if the testing is right, we can automatically deploy our app to a sandbox environment in which we can continue to run more tests and have our playground.
 
 Set up a SRE team for disaster recovery and best practices in the architecture and infrastructure, high availability, monitoring, etc.
-
-
