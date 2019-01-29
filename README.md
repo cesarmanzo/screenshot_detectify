@@ -11,6 +11,8 @@ A project to capture screenshots of webpages. Demo: [cesarmanzo.com](http://cesa
 - Postgresql
 - [Chromedriver](http://chromedriver.chromium.org/downloads)
 
+`pip install -r requirements.txt`
+
 `python manage.py makemigrations`
 
 `python manage.py migrate`
