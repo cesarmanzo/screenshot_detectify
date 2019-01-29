@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.contrib.auth.models import User, Group
 from screenshot.models import *
 from rest_framework import viewsets
 from selenium import webdriver
@@ -19,7 +18,6 @@ def read_source(request):
     if source == '1':
         multiple = request.POST.get('list')
         multiple = multiple.split(';')
-        print(multiple)
     elif source == '2':
         with open('text.txt', 'r') as f:
             multiple = f.read().split(';')
@@ -33,7 +31,6 @@ def read_source(request):
 
     for url in multiple:
         count += 1
-        print('THIS IS ', url)
         take_screenshot(url, r_type, saving, count)
 
     res = show_results(saving)
@@ -55,9 +52,10 @@ def take_screenshot(url, r_type, saving, count):
                     document.documentElement.clientHeight,
                     document.documentElement.scrollHeight,
                     document.documentElement.offsetHeight)""")
+            if height < 768:
+                height = 768
         else:
             height = 768
-        print(height)
         driver.set_window_size(1366, height)
         title = driver.title
         time.sleep(1)
@@ -66,10 +64,8 @@ def take_screenshot(url, r_type, saving, count):
         tosave = Screenshots(image=name, title=title, url=url, requesting=saving)
         tosave.save()
     except Exception as e:
-        
         print('error: ', e)
     driver.quit()
-    print('END')
 
     return True
 
@@ -77,3 +73,12 @@ def take_screenshot(url, r_type, saving, count):
 def show_results(saving):
     results = Screenshots.objects.filter(requesting = saving)
     return results
+
+def past_requesting(request):
+    past = Requesting.objects.all()
+    return render(request, 'past.html', {'past': past})
+
+def showing_results(request):
+    res = Screenshots.objects.filter(requesting = request.GET.get('saving'))
+    print(res)
+    return render(request, 'results.html', {'res': res})
