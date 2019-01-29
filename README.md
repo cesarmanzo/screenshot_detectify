@@ -17,7 +17,7 @@ A project to capture screenshots of webpages. Demo: [cesarmanzo.com](http://cesa
 
 `python manage.py runserver`
 
-I tried to make Docker work, but failed because of the Chromedriver, so I uploaded the project to cesarmanzo.com so you can play with it.
+I tried to make Docker work, but failed because of the Chromedriver, so I uploaded the project to [cesarmanzo.com](http://cesarmanzo.com) so you can play with it.
 
 
 ## TODO
